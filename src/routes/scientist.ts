@@ -4,7 +4,7 @@ let Router = express.Router()
 
 
 Router.get("/", (req: Request, res: Response) => {
-    res.send({"message": "elcome to Scientists Endpoints"})
+    res.send({"message": "Welcome to Scientists Endpoints"})
 })
 
 Router.get("/:name", (req: Request, res: Response) => {
