@@ -16,7 +16,7 @@ Router.post("/", (req: Request, res:Response) => {
 })
 
 Router.put("/:id", (req: Request, res: Response) => {
-    res.status(122).json({"message": `You tried to update scientist ith id: ${req.params.id}`})
+    res.status(122).json({"message": `You tried to update scientist with id: ${req.params.id}`})
 })
 
 Router.delete("/:id", (req: Request, res: Response) => {
