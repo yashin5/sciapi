@@ -1,6 +1,7 @@
 import express from 'express'
 import { Request, Response } from 'express'
 import scientistsRouter from './routes/scientist'
+const morgan = require('morgan')
 
 
 var app = express();
@@ -9,6 +10,7 @@ const HOST = '0.0.0.0';
 
 // Defining Middleware
 app.use(express.json())
+app.use(morgan('short'))
 app.use("/scientist", scientistsRouter)
 
 
