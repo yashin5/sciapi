@@ -11,5 +11,7 @@ const ScientistSchema = new Schema({
   nobelPrize: { type: Boolean, default: false },
 });
 
+ScientistSchema.index({firstName: 1, lastName: 1}, {unique: true})
+
 const Scientist = mongoose.model("Scientist", ScientistSchema);
 export default Scientist;
