@@ -1,26 +1,30 @@
 import express, { NextFunction } from 'express'
 import { Request, Response} from 'express'
+import Scientist from '../db/schemas/scientist'
+
+
 let Router = express.Router()
 
 
 Router.get("/", (req: Request, res: Response) => {
-    res.send({"message": "Welcome to Scientists Endpoints"})
-})
 
-Router.get("/:name", (req: Request, res: Response) => {
-    res.send({"message": `you requested ${req.params.name}`})
+    Scientist.find(function (err: any, scientist: Document) {
+        res.send(scientist)
+    })
 })
 
 Router.post("/", (req: Request, res:Response) => {
-    res.status(201).json({"message": "Congrats you created a Scientist"}).send()
-})
 
-Router.put("/:id", (req: Request, res: Response) => {
-    res.status(122).json({"message": `You tried to update scientist with id: ${req.params.id}`})
-})
+    const scientist = new Scientist(req.body);
 
-Router.delete("/:id", (req: Request, res: Response) => {
-    res.status(202).json({"message": `You deleted Scientist Id ${req.params.id}`})
+    scientist.save((err: any, sci: Document) => {
+        if (err) {
+            res.status(400)
+            res.send(err)
+        }
+        res.status(201)
+        res.send(sci)
+    })
 })
 
 export default Router
