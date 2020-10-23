@@ -21,9 +21,10 @@ Router.post("/", (req: Request, res:Response) => {
         if (err) {
             res.status(400)
             res.send(err)
+        }else{
+            res.status(201)
+            res.send(sci)
         }
-        res.status(201)
-        res.send(sci)
     })
 })
 
