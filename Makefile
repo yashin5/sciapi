@@ -1,5 +1,9 @@
 .PHONY: up
-up: down
+up: 
+	docker-compose  up -d
+
+.PHONY: build
+build: down
 	docker-compose \
 		-f docker-compose.yml up --build
 
