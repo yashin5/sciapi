@@ -33,3 +33,5 @@ app.get('/',function(req: Request,res: Response){
 app.listen(port,function(){
     console.log(`Running on http://${HOST}:${port}`);
 });
+
+export default app;
