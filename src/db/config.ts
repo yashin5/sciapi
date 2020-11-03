@@ -16,4 +16,7 @@ mongoose.connect(uri, {useNewUrlParser: true,useUnifiedTopology: true},(err: any
     
 })
 
+// This will make findOneAndUpdate available on mongoose
+mongoose.set('useFindAndModify', false);
+
 export default mongoose
