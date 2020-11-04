@@ -1,10 +1,11 @@
-FROM node:14.9.0-alpine3.10
+FROM node:15.0.1
 
 WORKDIR /app
 
 COPY . .
 
 RUN npm install
+RUN npm install mongo-seeding-cli -g  
 
 EXPOSE 3000
 
