@@ -7,5 +7,4 @@ COPY . .
 RUN apt-get update && apt-get install make && \ 
     npm install 
 
-CMD npm morgan install mongo-seeding-cli -g  && \
-    npm start
+CMD npm start
