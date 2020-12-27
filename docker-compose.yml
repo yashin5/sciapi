@@ -4,6 +4,7 @@ services:
   app:
     build:
       context: .
+    container_name: sciapi_api
     volumes:
       - .:/app
       - /app/node_modules
@@ -13,6 +14,7 @@ services:
       - 3000:3000
 
   mongo-express:
+    container_name: sciapi_mongo_express
     image: mongo-express:latest
     restart: always
     ports:
@@ -29,6 +31,7 @@ services:
 
   db:
     image: mongo
+    container_name: sciapi_db
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
