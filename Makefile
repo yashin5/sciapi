@@ -1,6 +1,7 @@
-.PHONY: up
+PHONY: up down build up-and-seed-db test-shell
+
 up: 
-	docker-compose  up -d
+	docker-compose  up
 
 .PHONY: build
 build: down
@@ -12,12 +13,10 @@ up-and-seed-db: up
 	docker exec sciapi_app_1 seed -u 'mongodb://admin:admin@db:27017/admin' ./seed/
 
 
-.PHONY: down
 down:
 	docker-compose down -v --remove-orphans
 
-.PHONY: test-shell
 test-shell:
 	docker-compose \
 		-f docker-compose.yml \
-		run --rm app sh 
+		run --rm app bash 

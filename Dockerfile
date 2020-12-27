@@ -4,9 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install
-RUN npm install mongo-seeding-cli -g  
+RUN apt-get update && apt-get install make && \ 
+    npm install 
 
-EXPOSE 3000
-
-ENTRYPOINT ["npm", "start"]
+CMD npm morgan install mongo-seeding-cli -g  && \
+    npm start
