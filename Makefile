@@ -1,17 +1,14 @@
 PHONY: up down build up-and-seed-db test-shell
 
-up: 
-	docker-compose  up
+up: build
+	docker-compose  up -d
 
-.PHONY: build
 build: down
 	docker-compose \
-		-f docker-compose.yml up --build
+		-f docker-compose.yml build --no-cache
 
-.PHONY: up-and-seed-db
 up-and-seed-db: up
-	docker exec sciapi_app_1 seed -u 'mongodb://admin:admin@db:27017/admin' ./seed/
-
+	docker exec sciapi_app_1 npx seed -u 'mongodb://admin:admin@db:27017/admin' ./seed/
 
 down:
 	docker-compose down -v --remove-orphans
