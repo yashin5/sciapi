@@ -10,16 +10,16 @@ export class ScientistController {
 
         const scientistId = req.params.scientistId;
 
-        if (scientistId){
-            Scientist.findOne({_id: scientistId}, function(err: any, scientist: Document){
+        if (scientistId) {
+            Scientist.findOne({ _id: scientistId }, function (err: any, scientist: Document) {
                 if (err) {
                     res.status(404)
                     return res.send("No Scientist with given id was found");
                 }
                 res.send(scientist);
             })
-        }else{
-            Scientist.find({}, function(err: any, scientist: Document){
+        } else {
+            Scientist.find({}, function (err: any, scientist: Document) {
                 if (err) {
                     res.send(err);
                 }
@@ -35,7 +35,7 @@ export class ScientistController {
             if (err) {
                 res.status(400);
                 res.send(err);
-            }else{
+            } else {
                 res.status(201);
                 res.send(sci);
             }
@@ -45,12 +45,12 @@ export class ScientistController {
     public deleteScientist(req: Request, res: Response) {
         const scientistId = req.params.scientistId;
 
-        Scientist.deleteOne({_id: scientistId}, (err: any) => {
-            if(err){
+        Scientist.deleteOne({ _id: scientistId }, (err: any) => {
+            if (err) {
                 res.status(400);
-                res.send({'error': "There is no scientist with this ID"});
+                res.send({ 'error': "There is no scientist with this ID" });
             }
-            else{
+            else {
                 res.status(204);
             }
         })
@@ -62,14 +62,14 @@ export class ScientistController {
         const updatedScientist = new Scientist(req.body);
         console.log("Preparando para atualizar");
         Scientist.findOneAndUpdate(
-            {_id: scientistId},
+            { _id: scientistId },
             req.body,
-            {sendOriginal: false},
+            { sendOriginal: false },
             (err: any, scientist: Document) => {
                 if (err) {
                     res.status(404)
                     res.send("Scientist not Found")
-                }else{
+                } else {
                     res.send("The Scientist was sucessfully updated")
                 }
             })

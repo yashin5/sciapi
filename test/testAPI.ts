@@ -10,12 +10,12 @@ describe('API Index Endpoint', () => {
 
     it('should get welcome message', () => {
         chai.request(app)
-        .get("/")
-        .end((err,res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('object');
-            res.body.message.should.include('Welcome to the Scientist API')
-        })
+            .get("/")
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.message.should.include('Welcome to the Scientist API')
+            })
     });
 });
 
@@ -37,13 +37,13 @@ describe('API Scientists Endpoint', () => {
 
     it('Should Not Create Scientist with incomplete information', () => {
         chai.request(app)
-        .post("/scientist/")
-        .type('application/json')
-        .send(marieCurie)
-        .end((err, res) => {
-            res.should.have.status(400)
-        })
+            .post("/scientist/")
+            .type('application/json')
+            .send(marieCurie)
+            .end((err, res) => {
+                res.should.have.status(400)
+            })
     })
 
-    
+
 })
