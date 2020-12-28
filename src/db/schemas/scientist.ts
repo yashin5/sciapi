@@ -9,7 +9,7 @@ const ScientistSchema = new Schema({
   DOB: { type: Date, required: true },
   nationality: { type: String, required: true },
   cityOfBirth: { type: String, required: true },
-  fields: [{ type: String }],
+  fields: [{ type: String, required: true }],
   nobelPrize: { type: Boolean, default: false },
 });
 
