@@ -1,26 +1,20 @@
-import express, { NextFunction } from 'express'
-import { Request, Response} from 'express'
-let Router = express.Router()
+import express, { NextFunction, Request, Response } from 'express';
+import { nextTick } from 'process';
+import { getScientists, createScientist, deleteScientist, updateScientist } from '../controller/scientist';
+import Scientist from '../db/schemas/scientist';
 
 
-Router.get("/", (req: Request, res: Response) => {
-    res.send({"message": "Welcome to Scientists Endpoints"})
-})
+let Router = express.Router();
 
-Router.get("/:name", (req: Request, res: Response) => {
-    res.send({"message": `you requested ${req.params.name}`})
-})
+Router.get("/", (req: Request, res: Response) => getScientists(req, res));
 
-Router.post("/", (req: Request, res:Response) => {
-    res.status(201).json({"message": "Congrats you created a Scientist"}).send()
-})
+Router.get("/:scientistId", (req: Request, res: Response) => getScientists(req, res));
 
-Router.put("/:id", (req: Request, res: Response) => {
-    res.status(122).json({"message": `You tried to update scientist with id: ${req.params.id}`})
-})
+Router.post("/", (req: Request, res: Response) => createScientist(req, res));
 
-Router.delete("/:id", (req: Request, res: Response) => {
-    res.status(202).json({"message": `You deleted Scientist Id ${req.params.id}`})
-})
+Router.delete("/:scientistId", (req: Request, res: Response) => deleteScientist(req, res));
 
-export default Router
+
+Router.put("/:scientistId", (req: Request, res: Response) => updateScientist(req, res));
+
+export default Router;

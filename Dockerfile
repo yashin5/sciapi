@@ -1,11 +1,10 @@
-FROM node:14.9.0-alpine3.10
+FROM node:15.0.1-slim
 
 WORKDIR /app
 
 COPY . .
 
-RUN npm install
+RUN apt-get update && apt-get install make && \ 
+    npm install 
 
-EXPOSE 3000
-
-ENTRYPOINT ["npm", "start"]
+CMD npm start

@@ -1,14 +1,22 @@
-.PHONY: up
-up: down
-	docker-compose \
-		-f docker-compose.yml up --build
+PHONY: up down build up-and-seed-db test-shell npm-deps
 
-.PHONY: down
+up: build
+	docker-compose  up -d
+
+build: down
+	docker-compose \
+		-f docker-compose.yml build
+
+up-and-seed-db: up
+	docker exec sciapi_api npx seed -u 'mongodb://admin:admin@db:27017/admin' ./seed/
+
 down:
 	docker-compose down -v --remove-orphans
 
-.PHONY: test-shell
 test-shell:
 	docker-compose \
 		-f docker-compose.yml \
-		run --rm app sh 
+		run --rm app bash -c 'make npm-deps && /bin/bash'
+
+npm-deps:
+	npm install
