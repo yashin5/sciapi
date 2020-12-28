@@ -8,7 +8,7 @@ const getScientists = (req: Request, res: Response) => {
     const scientistId = req.params.scientistId;
 
     if (scientistId) {
-        Scientist.findOne({ _id: scientistId }, function (err: any, scientist: Document) {
+        Scientist.findOne({ _id: scientistId }, (err: any, scientist: Document) => {
             if (err) {
                 res.status(404)
                 return res.send("No Scientist with given id was found");
@@ -16,7 +16,7 @@ const getScientists = (req: Request, res: Response) => {
             res.send(scientist);
         })
     }
-    Scientist.find({}, function (err: any, scientist: Document) {
+    Scientist.find({}, (err: any, scientist: Document) => {
         if (err) {
             res.send(err);
         }

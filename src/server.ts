@@ -17,7 +17,7 @@ app.use(morgan('short'));
 app.use("/scientist", scientistsRouter);
 
 // This was added as a main route for the project, I just changed the response
-app.get('/', function (req: Request, res: Response) {
+app.get('/', (req: Request, res: Response) => {
     const information = {
         project: "SciAPI",
         message: "Welcome to the Scientist API"
@@ -27,7 +27,7 @@ app.get('/', function (req: Request, res: Response) {
 
 
 // Put app to listen on HOST:port
-app.listen(port, function () {
+app.listen(port, () => {
     console.log(`Running on http://${HOST}:${port}`);
 });
 
