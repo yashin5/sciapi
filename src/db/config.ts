@@ -9,13 +9,11 @@ const uri: string = "mongodb://admin:admin@db:27017/admin"
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, (err: any) => {
     if (err) {
         console.log(err)
-    } else {
-        console.log("Connected")
-    }
-
-})
+    } 
+    console.log("Connected");
+});
 
 // This will make findOneAndUpdate available on mongoose
 mongoose.set('useFindAndModify', false);
 
-export default mongoose
+export default mongoose;

@@ -5,7 +5,6 @@ import Scientist from '../db/schemas/scientist'
 
 
 const getScientists = (req: Request, res: Response) => {
-
     const scientistId = req.params.scientistId;
 
     if (scientistId) {
@@ -16,15 +15,15 @@ const getScientists = (req: Request, res: Response) => {
             }
             res.send(scientist);
         })
-    } else {
-        Scientist.find({}, function (err: any, scientist: Document) {
-            if (err) {
-                res.send(err);
-            }
-            res.send(scientist);
-        })
     }
-}
+    Scientist.find({}, function (err: any, scientist: Document) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(scientist);
+    });
+
+};
 
 const createScientist = (req: Request, res: Response) => {
     const scientist = new Scientist(req.body);
@@ -33,12 +32,11 @@ const createScientist = (req: Request, res: Response) => {
         if (err) {
             res.status(400);
             res.send(err);
-        } else {
-            res.status(201);
-            res.send(sci);
         }
-    })
-}
+        res.status(201);
+        res.send(sci);
+    });
+};
 
 const deleteScientist = (req: Request, res: Response) => {
     const scientistId = req.params.scientistId;
@@ -48,11 +46,9 @@ const deleteScientist = (req: Request, res: Response) => {
             res.status(400);
             res.send({ 'error': "There is no scientist with this ID" });
         }
-        else {
-            res.status(204);
-        }
-    })
-}
+        res.status(204);
+    });
+};
 
 const updateScientist = (req: Request, res: Response) => {
     const scientistId = req.params.scientistId;
@@ -65,18 +61,17 @@ const updateScientist = (req: Request, res: Response) => {
         { sendOriginal: false },
         (err: any, scientist: Document) => {
             if (err) {
-                res.status(404)
-                res.send("Scientist not Found")
-            } else {
-                res.send("The Scientist was sucessfully updated")
+                res.status(404);
+                res.send("Scientist not Found");
             }
-        })
+            res.send("The Scientist was sucessfully updated");
+        });
 
-}
+};
 
 export {
     getScientists,
     createScientist,
     deleteScientist,
     updateScientist
-}
+};
