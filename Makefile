@@ -8,7 +8,7 @@ build: down
 		-f docker-compose.yml build
 
 up-and-seed-db: up
-	docker exec sciapi_app_1 npx seed -u 'mongodb://admin:admin@db:27017/admin' ./seed/
+	docker exec sciapi_api npx seed -u 'mongodb://admin:admin@db:27017/admin' ./seed/
 
 down:
 	docker-compose down -v --remove-orphans
